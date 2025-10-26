@@ -26,6 +26,17 @@ Data Structures
 ---size() - same as a stack
 -Link lists(regular list)
 --combination of queues and stacks
---ex: each "o" is a node, that knows the data of the next node, which is how they are connected to each other
-queue: o->o->o->o
-stack: o<-o<-o<-o
+--3 types
+---Singly Linklist
+---list of things linked together, nodes
+---only connected going forward, meaning each node keeps track of 2 things
+---what it is and which node comes next
+---[a] > [b] > [c]
+--Doubly Linklist
+---same as singly, but each node also knows what node is before it
+--- [a] <> [b] <> [c]
+--Doubly Circuly Linklist
+---same as doubly, but the first node(head) knows about the last node(tail) and vice versa, making it a circle
+       ^ --------------> |
+---    |[a] <> [b] <> [c]|  (is a circle)
+       | <-------------- v
