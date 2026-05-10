@@ -53,14 +53,34 @@ def harmonic(n):
 
 #print(harmonic(6))
 
+switch = True
+def countdown(n, start):
+    global switch
+    if n <= 0:
+        switch = False
+        return
+    if switch == True:
+        countdown(n-1,10)
+        print(n,end='')
+    print(n,end='')
+    countdown(n-1,10)
 
-tower1 = [3,2,1]
-tower2 = []
-tower3 = []
-towers = [tower1,tower2,tower3]
-def TOHanoi(towers):
-    if towers[2] == [3,2,1]:
-        return towers
-    if tower3[len(tower3)-1] < disk:
-        return towers
-    
+#countdown(10, 10)
+
+def right(n):
+    if n == 0:
+        return
+    print(n, end="")
+    right(n-1)
+
+def left(n):
+    if n == 0:
+        return
+    left(n-1)
+    print(n,end='')
+
+def countdownTest(n):
+    left(n-1)
+    right(n)
+
+countdownTest(10)
