@@ -30,20 +30,39 @@ class Stack(list):
     def size(self):
         return len(self.list)
 stack = Stack([1,2,3,4,5])
-while True:
-    question = input("size, empty, pop, push, or peek. ")
-    if "size" in question:    
-        print(stack.size())
-    elif "empty" in question:
-        print(stack.empty())
-    elif "pop" in question:
-        print(stack.pop())
-    elif "push" in question:
-        item = input("what are you adding (number) ")
-        print(stack.push(item))
+# while True:
+#     question = input("size, empty, pop, push, or peek. ")
+#     if "size" in question:    
+#         print(stack.size())
+#     elif "empty" in question:
+#         print(stack.empty())
+#     elif "pop" in question:
+#         print(stack.pop())
+#     elif "push" in question:
+#         item = input("what are you adding (number) ")
+#         print(stack.push(item))
         
-    elif "peek" in question:
-        print(stack.peek())
-    else: 
-        print("try agian")
+#     elif "peek" in question:
+#         print(stack.peek())
+#     else: 
+#         print("try agian")
         
+class Node:
+    def __init__(self, n=[], p=None, data=None):
+        self.data = data
+        self.n = n
+        self.p = p
+
+    def __repr__(self):
+        print(f"This Node {self.data} has {self.n} forward and {self.p} backwards")
+
+class Tree:
+    def __init__(self, root, nodes):
+        self.root = root
+        self.nodes = nodes
+
+
+
+NodeB = Node(data="B")
+NodeC = Node(data="C")
+rootNode = Node([NodeB,NodeC], data = "A")
