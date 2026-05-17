@@ -1,23 +1,22 @@
 
-tower1 = [3,2,1]
-tower2 = []
-tower3 = []
-towers = [tower1,tower2,tower3]
-def TOHanoi():
-    global tower1,tower2,tower3,towers
-    if tower3 == [3,2,1]:
-        return towers
-    #small disk
-    if towers[2][-1] < 1:
-        towers[0][-1].pop
-        towers[2].append[1]
-    
-    
-    #medium disk
+a = [3,2,1]
+b = []
+c = []
+total = 0
+def toh(n,start,temp,dest): 
+    global total
+    total+=1
+    if n == 1:
+        #print(f"move {n} from {start} to {dest}")
+        return
+    toh(n-1,start,dest,temp)
+    #print(f"move {n} from {start} to {dest}")
+    toh(n-1,temp,start,dest)
+
 
     
-    #large disk
-
-def move(tower1,tower2,tower3,piece):
-    #move one piece
-    pass
+n = 25
+toh(n,"a",'b','c')
+print(f"total moves = {total}")
+print(2**n - 1)
+        
