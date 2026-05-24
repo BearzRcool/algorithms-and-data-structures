@@ -48,14 +48,16 @@ stack = Stack([1,2,3,4,5])
 #         print("try agian")
         
 class Node:
-    def __init__(self, n=[], p=None, data=None):
+    def __init__(self, n = [], p = None, data = ""):
         self.data = data
         self.n = n
         self.p = p
 
     def __repr__(self):
-        print(f"This Node {self.data} has {self.n} forward and {self.p} backwards")
-
+        try:
+            print(f"This Node {self.data} has {self.n[0].data} + {self.n[1].data} forward and {self.p.data} backwards")
+        except(TypeError):
+            print("no node after this") 
 class Tree:
     def __init__(self, root, nodes):
         self.root = root
@@ -65,4 +67,55 @@ class Tree:
 
 NodeB = Node(data="B")
 NodeC = Node(data="C")
+NodeD = Node(data="D")
+NodeE = Node(data="E")
+NodeF = Node(data="F")
+NodeG = Node(data="G")
+NodeH = Node(data="H")
+NodeI = Node(data="I")
 rootNode = Node([NodeB,NodeC], data = "A")
+
+NodeB.n = [NodeD,NodeE]
+NodeB.p = rootNode
+
+NodeC.n = [NodeF,NodeG]
+NodeC.p = rootNode
+
+NodeD.n = [NodeH,NodeI]
+NodeD.p = NodeB
+
+NodeE.p = NodeB
+
+NodeG.p = NodeC
+
+NodeF.p = NodeC
+
+def find(node,data):
+    print(node.data)
+    if node.data == data:
+        print(f"{node.data}, parent is {node.p.data}")
+        exit(0)
+    if node.n == []:
+        return
+    
+    find(node.n[0],data)
+    find(node.n[1],data)
+
+#find(rootNode,"F")
+
+def draw(node):
+    if node.n == []:
+        print(f"[{node.data}]\n")
+        return
+    if node.data == node.p.n[0].data:
+        print(f"[{node.data}]\n    ")
+        print("   ")
+    if node.data == node.p.n[0].data:
+        print("going right")
+
+    print(f"[{node.data}]\n")
+    draw(node.n[0])
+    draw(node.n[1])
+    
+
+draw(rootNode)
