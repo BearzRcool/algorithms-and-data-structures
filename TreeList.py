@@ -90,6 +90,8 @@ NodeG.p = NodeC
 
 NodeF.p = NodeC
 
+
+
 def find(node,data):
     print(node.data)
     if node.data == data:
@@ -101,21 +103,21 @@ def find(node,data):
     find(node.n[0],data)
     find(node.n[1],data)
 
-#find(rootNode,"F")
+find(rootNode,"F")
 
-def draw(node):
-    if node.n == []:
-        print(f"[{node.data}]\n")
-        return
-    if node.data == node.p.n[0].data:
-        print(f"[{node.data}]\n    ")
-        print("   ")
-    if node.data == node.p.n[0].data:
-        print("going right")
+# def draw(node):
+#     if node.n == []:
+#         print(f"[{node.data}]\n")
+#         return
+#     if node.data == node.p.n[0].data:
+#         print(f"[{node.data}]\n    ")
+#         print("   ")
+#     if node.data == node.p.n[0].data:
+#         print("going right")
 
-    print(f"[{node.data}]\n")
-    draw(node.n[0])
-    draw(node.n[1])
+#     print(f"[{node.data}]\n")
+#     draw(node.n[0])
+#     draw(node.n[1])
     
 
-draw(rootNode)
+# draw(rootNode)
