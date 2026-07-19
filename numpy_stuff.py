@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mat
 import random as rd
+import time
 
 
 # biases = np.array([2])
@@ -15,18 +16,10 @@ import random as rd
 # print(l2inputs)
 # print(l3inputs)
 
-matrix1 = np.array([4,6,8])
-matrix2 = np.array([1,2,3])
-plt.plot(matrix1, matrix2, "green") #x,y,legend
-plt.legend("p")
-plt.xlabel("x-axis")
-plt.ylabel("y-axis")
-plt.title("Predicted Pattern")
-
-#plt.show()
 
 x_values = np.array([1,2,3,4])
-y_values = np.array([1,2,3,4])
+y_values = np.array([2,4,6,8])
+
 
 def cost_function(m,b):
     sum = 0
@@ -40,7 +33,7 @@ def predict_slope(m,b):
     for i in range(len(x_values)):
         sum += x_values[i]*(y_values[i] - (m*x_values[i] + b))
 
-    return (2/len(x_values)) * (sum)
+    return (-2/len(x_values)) * (sum)
 
 def predict_b(m,b):
     sum = 0
@@ -51,31 +44,68 @@ def predict_b(m,b):
 
 
 def neural_network(weight,bias):
-    weights = np.array([weight,weight,weight,weight])
-    
-    predicted_y_value_sum = predicted_y_value = np.dot(x_values,weights)+bias
-    return 
-actual_y_value_sum = 10
+    predicted_y_values = []
+    for x in x_values:
+        predicted_y_values.append((weight*x)+bias)
+    return predicted_y_values
 
 epocs = int(input("how many epocs? "))
-init_slope = rd.randint(0,10)
-init_b = rd.randint(0,10)
-b = 100
-slope = 100
-for _ in range(epocs):
-    
-    pred_y_sum = neural_network(init_slope,init_b)
 
-    cost = cost_function(init_slope,init_b)
+
+slopeLowerRange = -10
+slopeUpperRange = 10
+
+bLowerRange = -10
+bUpperRange = 10
+
+slope = np.random.uniform(slopeLowerRange,slopeUpperRange)
+b = np.random.uniform(bLowerRange,bUpperRange)
+
+slopeOffset = 0.1
+bOffset = 0.1
+learingRate = 0.01
+
+
+#x = np.linespace(-5,5,20)
+#y = (init_slope)*x+init_b
+
+#plt.plot(x,y, color = "green") #x,y,legend
+plt.legend("p")
+plt.grid(True)
+plt.xlabel("x-axis")
+plt.ylabel("y-axis")
+plt.title("Predicted Pattern")
+
+#plt.show()
+
+
+
+for _ in range(epocs):
+    slope_gradient = predict_slope(slope,b)
+    b_gradient = predict_b(slope,b)
+
+    slope -= learingRate*slope_gradient
+    b -= learingRate* b_gradient
+
+    cost = cost_function(slope,b)
+
+    predicted_y_values = neural_network(slope,b)
+
+     
+    print(f'''
+
+epoc {_+1}
+overall accuracy = {cost}
+slope accuracy = {slope}
+y intercept accuracy = {b}
+slope gradient = {slope_gradient}
+b gradient = {b_gradient}
+predicted equation = y = {slope}x + {b}
+pred y value = {predicted_y_values}
+''')
     
     
-    print(f"epoc {_+1}, cost = {cost}, slope = {slope}, b = {b}, init_slope = {init_slope}, init_b = {init_b}")
-    if b != 0:
-        b = predict_b(init_slope,init_b)
-    if slope != 1:
-        slope = predict_slope(init_slope,init_b)
-    if slope == 1 and b == 0:
-        break
-        print("found it!")
-    init_slope = rd.randint(0,10)
-    init_b = rd.randint(0,10)
+
+    # y = init_slope*x + init_b
+
+    # time.sleep(5)
