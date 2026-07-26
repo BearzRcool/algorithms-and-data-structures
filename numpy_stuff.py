@@ -18,7 +18,7 @@ import time
 
 
 x_values = np.array([1,2,3,4])
-y_values = np.array([2,4,6,8])
+y_values = np.array([1,2,3,4])
 
 
 def cost_function(m,b):
@@ -49,7 +49,7 @@ def neural_network(weight,bias):
         predicted_y_values.append((weight*x)+bias)
     return predicted_y_values
 
-epocs = int(input("how many epocs? "))
+epochs = int(input("how many epochs? "))
 
 
 slopeLowerRange = -10
@@ -66,21 +66,19 @@ bOffset = 0.1
 learingRate = 0.01
 
 
-#x = np.linespace(-5,5,20)
-#y = (init_slope)*x+init_b
 
-#plt.plot(x,y, color = "green") #x,y,legend
-plt.legend("p")
-plt.grid(True)
-plt.xlabel("x-axis")
-plt.ylabel("y-axis")
-plt.title("Predicted Pattern")
-
-#plt.show()
-
+def plot_grid(epoch):
+    plt.grid(True)
+    plt.xlabel("x values")
+    plt.ylabel("y values")
+    plt.title(f"Predicted Linear Equation \n Epoch: {epoch}")
+    plt.plot(x_values, predicted_y_values)
+    plt.plot(x_values, y_values)
+    plt.show()
+    
 
 
-for _ in range(epocs):
+for _ in range(epochs):
     slope_gradient = predict_slope(slope,b)
     b_gradient = predict_b(slope,b)
 
@@ -103,9 +101,5 @@ b gradient = {b_gradient}
 predicted equation = y = {slope}x + {b}
 pred y value = {predicted_y_values}
 ''')
-    
-    
-
-    # y = init_slope*x + init_b
-
-    # time.sleep(5)
+    plot_grid(_+1)
+    time.sleep(0.1)
